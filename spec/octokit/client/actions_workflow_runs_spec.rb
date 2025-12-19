@@ -104,7 +104,7 @@ describe Octokit::Client::ActionsWorkflowRuns, :vcr do
     end
 
     it 'returns false if request returns unexpected status' do
-      request = stub_post("repos/#{@test_repo}/actions/runs/#{@run_id}/rerun").to_return(status: 205)
+      request = stub_post("repos/#{@test_repo}/actions/runs/#{@run_id}/rerun").to_return(status: 300)
 
       response = @client.rerun_workflow_run(@test_repo, @run_id)
 
@@ -124,7 +124,7 @@ describe Octokit::Client::ActionsWorkflowRuns, :vcr do
     end
 
     it 'returns false if the request returns unexpected status' do
-      request = stub_post("repos/#{@test_repo}/actions/runs/#{@run_id}/cancel").to_return(status: 205)
+      request = stub_post("repos/#{@test_repo}/actions/runs/#{@run_id}/cancel").to_return(status: 300)
 
       response = @client.cancel_workflow_run(@test_repo, @run_id)
 
