@@ -9,7 +9,7 @@ module Octokit
 
     # Header keys that can be passed in options hash to {#get},{#head}
     CONVENIENCE_HEADERS = Set.new(%i[accept content_type])
-    SUCCESSFUL_RESPONSES = [200, 201, 202, 204].freeze
+    SUCCESSFUL_RESPONSES = (200..299)
 
     # Make a HTTP GET request
     #
@@ -168,7 +168,7 @@ module Octokit
     # @return [Boolean] True on success, false otherwise
     def boolean_from_response(method, path, options = {})
       request(method, path, options)
-      SUCCESSFUL_RESPONSES.include? @last_response.status
+      SUCCESSFUL_RESPONSES.cover? @last_response.status
     rescue Octokit::NotFound
       false
     end
